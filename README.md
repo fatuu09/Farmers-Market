@@ -43,6 +43,8 @@ Select payment option (cash, card, or online transaction).
 Receive order confirmation and pickup details.
 
 ### 5. Administration
+Admins can manage farmers market listings, vendor accounts, and customer issues
+ensure data consistency and system security.
              
 
 
