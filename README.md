@@ -21,3 +21,28 @@ Vendors get more visibility and can sell more products by using a simple online 
  Busy customers can quickly find markets, browse products, and pre-order items  without having to go to every
  market in person.
 
+ ### 1.  Farmers Market Directory 
+
+The farmers Markets can be  filtered by location, date, vendors, and specialty items.  If there are catalogs of the products and if Pre-ordering is available.
+
+### 2. Admin Dashboard
+  Can manage their inventory, view orders, and update market attendance for Vendors. 
+              
+### 3.  Payments actions 
+Will be designed with payment options for online orders, show if vendors  accept only cash or cash/card.
+
+### 4. Customer Experience 
+Browse markets and vendors.
+
+Search for products across all markets.
+
+Place pre-orders with quantity and price details.
+
+Select payment option (cash, card, or online transaction).
+
+Receive order confirmation and pickup details.
+
+### 5. Administration
+             
+
+
