@@ -28,8 +28,8 @@ The farmers Markets can be  filtered by location, date, vendors, and specialty i
 ### 2. Admin Dashboard
   Can manage their inventory, view orders, and update market attendance for Vendors. 
               
-### 3.  Payments actions 
-Will be designed with payment options for online orders, show if vendors  accept only cash or cash/card.
+### 3.  Payment actions 
+Will be designed with payment options for online orders, show if vendors accept only cash or cash/card.
 
 ### 4. Customer Experience 
 Browse markets and vendors.
@@ -43,8 +43,8 @@ Select payment option (cash, card, or online transaction).
 Receive order confirmation and pickup details.
 
 ### 5. Administration
-Admins can manage farmers market listings, vendor accounts, and customer issues
-ensure data consistency and system security.
+Admins can manage farmers market listings, vendor accounts, and customer issues.
+Ensure data consistency and system security.
 
 
 Trello Board:
