@@ -17,7 +17,7 @@ CREATE TABLE Vendor (
 CREATE TABLE Market (
   MarketID VARCHAR(20) PRIMARY KEY,
   Name VARCHAR(100) NOT NULL,
-  Location VARCHAR (150)
+  Location VARCHAR(150)
 );
 
 CREATE TABLE Vendor_Products (
