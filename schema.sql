@@ -18,6 +18,6 @@ CREATE TABLE Market (
   MarketID VARCHAR(20) PRIMARY KEY,
   Name VARCHAR(100) NOT NULL,
   Location VARCHAR (150)
-)
+);
 
 
