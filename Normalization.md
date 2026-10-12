@@ -34,6 +34,6 @@ vendor-market combination from being recorded more than once.
 
 ## Preorder Table 
 The preorder table uses OrderNumber as its primary key. CustomerID, VendorID, and MarketID connect each preorder
- to the related customer, vendor, market, and product .The combination of VendorID and ProductID references Vendor_Products
+ to the customer, vendor and market .The combination of VendorID and ProductID references Vendor_Products
  ensuring that the selected products Is offered by that vendor. The combination of MarketID and VendorID references
  Market_Vendor, ensuring that the vendor is associated with the selected market.
