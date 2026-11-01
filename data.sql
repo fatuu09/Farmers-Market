@@ -1,17 +1,17 @@
 -- 10 markets
 INSERT INTO Market (MarketID, Name, Location) VALUES
-("M001", "Minneapolis Farmers Market", ""),
-("M002", "Saint Paul Farmers Market", "")
-("M003", "Maplewood Farmers Market", "")
-("M004", "Woodbury Farmers Market", "")
-("M005", "Burnsville Farmers Market", "")
-("M006", "Richfield Farmers Market", "")
-("M007", "Bloomington Farmers Market", "")
-("M008", "Inver Grove Heights Farmers Market", "")
-("M009", "Roseville Farmers Market", "")
-("M010", "Apple Valley Farmers Market", "")
+("M001", "Minneapolis Farmers Market", "312 East Lyndale Ave N, Minneapolis, MN 55405"),
+("M002", "Saint Paul Farmers Market", "290 5th St E, St Paul, MN 55101"),
+("M003", "Maplewood Farmers Market", "1850 White Bear Ave, Maplewood, MN 55109"),
+("M004", "Woodbury Farmers Market", "3311 Commonwealth Ave, Woodbury, MN 55125"),
+("M005", "Burnsville Farmers Market", "3333 Cliff Rd E, Burnsville, MN 55337"),
+("M006", "Richfield Farmers Market", "6335 Portland Ave, Richfield, MN 55423"),
+("M007", "Bloomington Farmers Market", "1800 W Old Shakopee Rd, Bloomington, MN 55431"),
+("M008", "Inver Grove Heights Farmers Market", "8055 Barbara Ave E, Inver Grove Heights, MN 55077"),
+("M009", "Roseville Farmers Market", "2131 Fairview Ave N, Roseville, MN 55113"),
+("M010", "Apple Valley Farmers Market", "7100 147th St W, Apple Valley, MN 55124");
   
---20 farmers
+--20 farmers/vendors
 
 
 
