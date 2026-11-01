@@ -1,15 +1,16 @@
 -- 10 markets
 INSERT INTO Market (MarketID, Name, Location) VALUES
-("M001", "Minneapolis Farmers Market", "Minneapolis, MN"),
-("M002", "", "")
-("M003", "", "")
-("M004", "", "")
-("M005", "", "")
-("M006", "", "")
-("M007", "", "")
-("M008", "", "")
-("M009", "", "")
-("M0010", "", "")
+("M001", "Minneapolis Farmers Market", ""),
+("M002", "Saint Paul Farmers Market", "")
+("M003", "Maplewood Farmers Market", "")
+("M004", "Woodbury Farmers Market", "")
+("M005", "Burnsville Farmers Market", "")
+("M006", "Richfield Farmers Market", "")
+("M007", "Bloomington Farmers Market", "")
+("M008", "Inver Grove Heights Farmers Market", "")
+("M009", "Roseville Farmers Market", "")
+("M010", "Apple Valley Farmers Market", "")
+  
 --20 farmers
 
 
