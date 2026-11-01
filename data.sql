@@ -12,6 +12,8 @@ INSERT INTO Market (MarketID, Name, Location) VALUES
 ("M010", "Apple Valley Farmers Market", "7100 147th St W, Apple Valley, MN 55124");
   
 --20 farmers/vendors
+INSERT INTO Vendor (VendorID, Name) VALUES
+("V001","" ),
 
 
 
