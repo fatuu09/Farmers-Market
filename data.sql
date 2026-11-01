@@ -1,7 +1,15 @@
 -- 10 markets
 INSERT INTO Market (MarketID, Name, Location) VALUES
-
-
+("M001", "Minneapolis Farmers Market", "Minneapolis, MN"),
+("M002", "", "")
+("M003", "", "")
+("M004", "", "")
+("M005", "", "")
+("M006", "", "")
+("M007", "", "")
+("M008", "", "")
+("M009", "", "")
+("M0010", "", "")
 --20 farmers
 
 
