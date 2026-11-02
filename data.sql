@@ -12,7 +12,7 @@ INSERT INTO Market (MarketID, Name, Location) VALUES
 ("M010", "Apple Valley Farmers Market", "7100 147th St W, Apple Valley, MN 55124");
   
 --20 farmers/vendors
-INSERT INTO Market_Vendors (market_id, vendor_id) VALUES
+INSERT INTO Market_Vendor (MarketID, VendorID) VALUES
 ("M001","V001" ),
 ("M001","V002" ),
 ("M002","V003" ),
@@ -32,7 +32,7 @@ INSERT INTO Market_Vendors (market_id, vendor_id) VALUES
 ("M009","V017" ),
 ("M009","V018" ),
 ("M010","V019" ),
-("M010","V020" ),
+("M010","V020" );
   
 
 
@@ -91,7 +91,7 @@ INSERT INTO Product (ProductID, Name) VALUES
 ("P050", "Broccoli");
 
 
-INSERT INTO Vendor_Products(price,quantity,vendor_id,product_id) VALUES
+INSERT INTO Vendor_Products (Price, Quantity, VendorID, ProductID) VALUES
 (2.99, 100, "V001", "P001"),
 (3.50, 75, "V001", "P002"),
 (4.00, 50, "V002", "P003"),
