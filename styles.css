@@ -1,4 +1,4 @@
-/* Colors and basic page layout */
+/* basic page layout */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -24,7 +24,7 @@ header {
 
 header h1 {
     margin: 0;
-    font-family: Georgia, serif;
+    font-family: 'Trebuchet MS', sans-serif;
     font-size: 26px;
     color: #173b69;
 }
