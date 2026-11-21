@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Farmers Market</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Farmers Market</h1>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#markets">Markets</a>
+                <a href="#products">Products</a>
+                <a href="#orders">Pre-orders</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="hero">
+                <h2>Local. Fresh.<br>Farmers markets.</h2>
+                <p>Explore local farmers markets and fresh produce around Minnesota.</p>
+                <a href="#markets" class="hero-link">Explore markets</a>
+            </div>
+            <div class="welcome">
+                <h2>Welcome to Farmers Market</h2>
+                <p>Find markets near you, browse available products, or make a pre-order!</p>
+                <p><a href="#products">Browse products</a></p>
+            </div>
+        </section>
+
+        <section id="markets">
+            <h2>Farmers Markets</h2>
+            <p>Choose a market to see the products sold there.</p>
+            <div id="marketList" class="cards"></div>
+        </section>
+
+        <section id="products">
+            <h2>Products</h2>
+            <p>Search for products from the farmers markets.</p>
+            <div class="filters">
+                <div>
+                    <label for="search">Search products</label>
+                    <input id="search" type="text" placeholder="Enter a product name">
+                </div>
+                <div>
+                    <label for="marketFilter">Choose a market</label>
+                    <select id="marketFilter">
+                        <option value="">All markets</option>
+                    </select>
+                </div>
+            </div>
+            <p id="productCount"></p>
+            <div id="productList" class="cards"></div>
+        </section>
+
+        <section id="checkout">
+            <h2>Pre-order</h2>
+            <p>This is a demo. No order is sent to a database.</p>
+            <div class="order-form">
+                <h3 id="chosenProduct">Choose a product first</h3>
+                <form id="orderForm">
+                    <label for="customer">Customer</label>
+                    <select id="customer" required></select>
+                    <label for="quantity">Quantity</label>
+                    <input id="quantity" type="number" min="1" value="1" required>
+                    <p id="total"></p>
+                    <button type="submit">Place pre-order</button>
+                </form>
+                <p id="message" role="status"></p>
+            </div>
+            <p><a href="#products">Back to products</a></p>
+        </section>
+
+        <section id="orders">
+            <h2>Pre-orders</h2>
+            <p>Sample orders from the SQL file and any orders you make during this visit.</p>
+            <div id="orderList" class="orders"></div>
+            <p><a href="#products">Browse products</a></p>
+        </section>
+    </main>
+
+    <footer>SE 3050 Farmers Market Project</footer>
+    <script src="sample-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
