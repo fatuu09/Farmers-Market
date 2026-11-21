@@ -10,30 +10,7 @@ INSERT INTO Market (MarketID, Name, Location) VALUES
 ("M008", "Inver Grove Heights Farmers Market", "8055 Barbara Ave E, Inver Grove Heights, MN 55077"),
 ("M009", "Roseville Farmers Market", "2131 Fairview Ave N, Roseville, MN 55113"),
 ("M010", "Apple Valley Farmers Market", "7100 147th St W, Apple Valley, MN 55124");
-  
---20 farmers/vendors
-INSERT INTO Market_Vendor (MarketID, VendorID) VALUES
-("M001","V001" ),
-("M001","V002" ),
-("M002","V003" ),
-("M002","V004" ),
-("M003","V005" ),
-("M003","V006" ),
-("M004","V007" ),
-("M004","V008" ),
-("M005","V009" ),
-("M005","V010"),
-("M006","V011"),
-("M006","V012"),
-("M007","V013"),
-("M007","V014"),
-("M008","V015"),
-("M008","V016"),
-("M009","V017" ),
-("M009","V018" ),
-("M010","V019" ),
-("M010","V020" );
-  
+
 
 INSERT INTO Vendor(VendorID, Name) VALUES
   ("V001", "Fabulous Fresh Farm"),
@@ -57,7 +34,30 @@ INSERT INTO Vendor(VendorID, Name) VALUES
   ("V019", "Sunset Farm"),
   ("V020","Habibo Harvest Farm");
 
---50 products
+-- 20 farmers/vendors
+INSERT INTO Market_Vendor (MarketID, VendorID) VALUES
+("M001","V001" ),
+("M001","V002" ),
+("M002","V003" ),
+("M002","V004" ),
+("M003","V005" ),
+("M003","V006" ),
+("M004","V007" ),
+("M004","V008" ),
+("M005","V009" ),
+("M005","V010"),
+("M006","V011"),
+("M006","V012"),
+("M007","V013"),
+("M007","V014"),
+("M008","V015"),
+("M008","V016"),
+("M009","V017" ),
+("M009","V018" ),
+("M010","V019" ),
+("M010","V020" );
+
+-- 50 products
 INSERT INTO Product (ProductID, Name) VALUES
 ("P001", "Apples"),
 ("P002", "Bananas"),
@@ -171,7 +171,7 @@ INSERT INTO Customer(CustomerID,Name, Email) VALUES
 ("C004", "John K", "JohnK@gmail.com"),
 ("C005", "David L", "DavidL@gmail.com");
 
---Preorders
+-- Preorders
 INSERT INTO Preorder(OrderNumber, CustomerID, VendorID, MarketID, ProductID) VALUES
 ("0001", "C001", "V001", "M001", "P001"),
 ("0002", "C002", "V003", "M002", "P005"),
