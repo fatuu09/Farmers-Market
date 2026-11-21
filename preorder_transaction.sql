@@ -1,3 +1,5 @@
+START TRANSACTION;
+
 UPDATE Vendor_Products
 SET Quantity = Quantity - 1
 WHERE VendorID = 'V001'
