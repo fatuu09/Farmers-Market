@@ -112,7 +112,7 @@ function showOrders() {
     for (var j = 0; j < demoOrders.length; j++) {
         var demo = demoOrders[j];
         var item = document.createElement("p");
-        item.textContent = "DEMO: " + demo.customer + " - " + demo.product + " (" + demo.quantity + ")";
+        item.textContent = order.customer + " - " + order.product + " (" + order.quantity + ")";
         list.appendChild(item);
     }
 }
