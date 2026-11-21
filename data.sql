@@ -35,7 +35,27 @@ INSERT INTO Market_Vendor (MarketID, VendorID) VALUES
 ("M010","V020" );
   
 
-
+INSERT INTO Vendor(VendorID, Name) VALUES
+  ("V001", "Fabulous Fresh Farm"),
+  ("V002", "Green Oasis Produce"),
+  ("V003", "Fatuma's Garden"),
+  ("V004", "North Star Harvest"),
+  ("V005", "Sweet Savannah Produce"),
+  ("V006", "Emerald Roots Organics"),
+  ("V007", "Jubba Produce"),
+  ("V008", "Sunny Side Farm"),
+  ("V009", "Family Farm"),
+  ("V010", "Green Acres Produce"),
+  ("V011", "Barwaaqo Fresh Farm"),
+  ("V012", "Cedar Organics"),
+  ("V013", "Happy Harvest Farm"),
+  ("V014", "River Side Farm"),
+  ("V015", "Fresh Pick Farm"),
+  ("V016", "Apple Tree Farm"),
+  ("V017", "Sweet Berry Farm"),
+  ("V018", "Spring  Valley Farm"),
+  ("V019", "Sunset Farm"),
+  ("V020","Habibo Harvest Farm");
 
 --50 products
 INSERT INTO Product (ProductID, Name) VALUES
@@ -142,6 +162,28 @@ INSERT INTO Vendor_Products (Price, Quantity, VendorID, ProductID) VALUES
 (4.25, 60,  "V008", "P048"),
 (3.80, 75,  "V009", "P049"),
 (2.75, 95,  "V010", "P050");
+
+-- Customers 
+INSERT INTO Customer(CustomerID,Name, Email) VALUES
+("C001", "Zahara Sah",  "ZaharaSah@gmail.com"),
+("C002", "Stephanie Y", "StephanieY@gmail.com"),
+("C003", "Emily W", "EmilyW@gmail.com"),
+("C004", "John K", "JohnK@gmail.com"),
+("C005", "David L", "DavidL@gmail.com");
+
+--Preorders
+INSERT INTO Preorder(OrderNumber, CustomerID, VendorID, MarketID, ProductID) VALUES
+("0001", "C001", "V001", "M001", "P001"),
+("0002", "C002", "V003", "M002", "P005"),
+("0003", "C003","V005", "M003", "P009"),
+("0004", "C004", "V007", "M004", "P013"),
+("0005", "C005","V009", "M005", "P017");
+
+
+
+
+
+
 
 
 
