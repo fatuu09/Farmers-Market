@@ -2,28 +2,126 @@
 var selectedProduct = -1;
 var demoOrders = [];
 
-function showMarkets() {
+async function showMarkets() {
     var list = document.getElementById("marketList");
-    list.innerHTML = "";
+    var filter = document.getElementById("marketFilter");
 
-    for (var i = 0; i < markets.length; i++) {
-        var market = markets[i];
-        var card = document.createElement("div");
-        card.className = "card";
-        var title = document.createElement("h3");
-        title.textContent = market.name;
-        var address = document.createElement("p");
-        address.textContent = market.location;
-        var link = document.createElement("a");
-        link.href = "#products";
-        link.textContent = "View products";
-        link.dataset.id = market.id;
-        link.onclick = function () {
-            document.getElementById("marketFilter").value = this.dataset.id;
-            showProducts();
-        };
-        card.append(title, address, link);
-        list.appendChild(card);
+    try {
+        var response = await fetch("/markets");
+
+        if (!response.ok) {
+            throw new Error("Could not load markets");
+        }
+
+        var data = await response.json();
+
+        markets = [];
+        list.innerHTML = "";
+        filter.innerHTML = '<option value="">All markets</option>';
+
+        for (var i = 0; i < data.length; i++) {
+            var market = {
+                id: data[i].MarketID,
+                name: data[i].Name,
+                location: data[i].Location
+            };
+
+            markets.push(market);
+
+            var card = document.createElement("div");
+            card.className = "card";
+
+            var title = document.createElement("h3");
+            title.textContent = market.name;
+
+            var address = document.createElement("p");
+            address.textContent = market.location;
+
+            var link = document.createElement("a");
+            link.href = "#products";
+            link.textContent = "View products";
+            link.dataset.id = market.id;
+
+            link.onclick = function () {
+                filter.value = this.dataset.id;
+                showProducts();
+            };
+
+            card.append(title, address, link);
+            list.appendChild(card);
+
+            var option = document.createElement("option");
+            option.value = market.id;
+            option.textContent = market.name;
+            filter.appendChild(option);
+        }
+
+        await loadProducts();
+
+    } catch (error) {
+        list.textContent = "Unable to load markets from the database.";
+        console.error(error);
+    }
+}
+
+async function loadProducts() {
+    try {
+        var productResponse = await fetch("/products");
+        var vendorResponse = await fetch("/vendors");
+        var priceResponse = await fetch("/vendor-products");
+        var marketResponse = await fetch("/market-vendors");
+
+        if (!productResponse.ok || !vendorResponse.ok ||
+            !priceResponse.ok || !marketResponse.ok) {
+            throw new Error("Could not load product information");
+        }
+
+        var productData = await productResponse.json();
+        var vendorData = await vendorResponse.json();
+        var priceData = await priceResponse.json();
+        var marketData = await marketResponse.json();
+
+        products = [];
+
+        for (var i = 0; i < priceData.length; i++) {
+            var item = priceData[i];
+
+            var productName = "";
+            var vendorName = "";
+
+            for (var j = 0; j < productData.length; j++) {
+                if (productData[j].ProductID === item.ProductID) {
+                    productName = productData[j].Name;
+                }
+            }
+
+            for (var k = 0; k < vendorData.length; k++) {
+                if (vendorData[k].VendorID === item.VendorID) {
+                    vendorName = vendorData[k].Name;
+                }
+            }
+
+            for (var m = 0; m < marketData.length; m++) {
+                if (marketData[m].VendorID === item.VendorID) {
+                    products.push({
+                        id: item.ProductID,
+                        vendorId: item.VendorID,
+                        name: productName,
+                        vendor: vendorName,
+                        market: marketData[m].MarketID,
+                        price: Number(item.Price),
+                        stock: Number(item.Quantity)
+                    });
+                }
+            }
+        }
+
+        showProducts();
+
+    } catch (error) {
+        document.getElementById("productList").textContent =
+            "Unable to load products from the database.";
+        console.error(error);
     }
 }
 
@@ -125,11 +223,60 @@ for (var i = 0; i < markets.length; i++) {
     document.getElementById("marketFilter").appendChild(option);
 }
 
-for (var j = 0; j < customers.length; j++) {
-    var option = document.createElement("option");
-    option.value = customers[j].id;
-    option.textContent = customers[j].name;
-    document.getElementById("customer").appendChild(option);
+async function loadCustomers() {
+    try {
+        var response = await fetch("/customers");
+
+        if (!response.ok) {
+            throw new Error("Could not load customers");
+        }
+
+        var data = await response.json();
+
+        customers = [];
+
+        for (var i = 0; i < data.length; i++) {
+            customers.push({
+                id: data[i].CustomerID,
+                name: data[i].Name,
+                email: data[i].Email
+            });
+        }
+
+        showCustomers();
+
+    } catch (error) {
+        console.error("Error loading customers:", error);
+    }
+}
+
+async function loadCustomers() {
+    try {
+        var response = await fetch("/customers");
+
+        if (!response.ok) {
+            throw new Error("Could not load customers");
+        }
+
+        var data = await response.json();
+        var list = document.getElementById("customer");
+
+        list.innerHTML = "";
+
+        for (var i = 0; i < data.length; i++) {
+            var option = document.createElement("option");
+
+            option.value = data[i].CustomerID;
+            option.textContent = data[i].Name;
+
+            list.appendChild(option);
+        }
+
+    } catch (error) {
+        console.error(error);
+        document.getElementById("message").textContent =
+            "Unable to load customers.";
+    }
 }
 
 document.getElementById("search").oninput = showProducts;
@@ -139,4 +286,5 @@ document.getElementById("orderForm").onsubmit = placeOrder;
 showMarkets();
 showProducts();
 showOrders();
+loadCustomer();
 if (!location.hash || location.hash === "#checkout") location.hash = "#home";
