@@ -1,6 +1,6 @@
-
+var markets = [];
+var products = [];
 var selectedProduct = -1;
-var demoOrders = [];
 
 async function showMarkets() {
     var list = document.getElementById("marketList");
@@ -178,49 +178,39 @@ function showTotal() {
 
 function placeOrder(event) {
     event.preventDefault();
-    if (selectedProduct === -1) return;
-    var quantity = Number(document.getElementById("quantity").value);
-    var product = products[selectedProduct];
-    if (!Number.isInteger(quantity) || quantity < 1 || quantity > product.stock) {
-        document.getElementById("message").textContent = "Enter an available quantity.";
-        return;
+document.getElementById("message").textContent = "Pre-ordering not available.";
     }
-    var customerList = document.getElementById("customer");
-    var customerName = customerList.options[customerList.selectedIndex].text;
-    demoOrders.push({
-        customer: customerName,
-        product: product.name,
-        market: product.market,
-        vendor: product.vendor,
-        quantity: quantity
-    });
-    showOrders();
-    location.hash = "#orders";
-}
 
-function showOrders() {
+async function showOrders() {
     var list = document.getElementById("orderList");
     list.innerHTML = "";
-    for (var i = 0; i < existingOrders.length; i++) {
-        var order = existingOrders[i];
-        var line = document.createElement("p");
-        line.textContent = order.customer + " - " + order.product + " - " + order.market;
-        list.appendChild(line);
-    }
-    for (var j = 0; j < demoOrders.length; j++) {
-        var demo = demoOrders[j];
-        var item = document.createElement("p");
-        item.textContent = order.customer + " - " + order.product + " (" + order.quantity + ")";
-        list.appendChild(item);
-    }
-}
 
-// Fill in drop-down lists when the page opens.
-for (var i = 0; i < markets.length; i++) {
-    var option = document.createElement("option");
-    option.value = markets[i].id;
-    option.textContent = markets[i].name;
-    document.getElementById("marketFilter").appendChild(option);
+    try {
+        var response = await fetch("/preorders");
+
+        if (!response.ok) {
+            throw new Error("Could not load orders");
+        }
+
+        var orders = await response.json();
+
+        for (var i = 0; i < orders.length; i++) {
+            var order = orders[i];
+
+            var item = document.createElement("p");
+
+            item.textContent =
+                "Order: " + order.OrderNumber +
+                " | Customer: " + order.CustomerID +
+                " | Product: " + order.ProductID;
+
+            list.appendChild(item);
+        }
+
+    } catch (error) {
+        list.textContent = "Unable to load pre-orders.";
+        console.error(error);
+    }
 }
 
 async function loadCustomers() {
@@ -257,7 +247,6 @@ document.getElementById("marketFilter").onchange = showProducts;
 document.getElementById("quantity").oninput = showTotal;
 document.getElementById("orderForm").onsubmit = placeOrder;
 showMarkets();
-showProducts();
-showOrders();
 loadCustomers();
 if (!location.hash || location.hash === "#checkout") location.hash = "#home";
+document.querySelector('a[href="#orders"]').onclick = showOrders;
