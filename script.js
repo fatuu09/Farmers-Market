@@ -178,8 +178,24 @@ function showTotal() {
 
 function placeOrder(event) {
     event.preventDefault();
-document.getElementById("message").textContent = "Pre-ordering not available.";
+
+    var message = document.getElementById("message");
+    var quantity = Number(document.getElementById("quantity").value);
+
+    if (selectedProduct === -1) {
+        message.textContent = "Please select a product.";
+        return;
     }
+
+    var product = products[selectedProduct];
+
+    if (!Number.isInteger(quantity) || quantity < 1 || quantity > product.stock) {
+        message.textContent = "Please enter an available quantity.";
+        return;
+    }
+
+    message.textContent = "Preorder submission is not connected yet.";
+}
 
 async function showOrders() {
     var list = document.getElementById("orderList");
