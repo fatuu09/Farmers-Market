@@ -87,7 +87,7 @@ def get_preorders():
 def add_preorder():
     data = request.get_json(silent=True)
     if not isinstance(data, dict):
-        return jsonify({"error: "Invalid preorder data"}), 400
+        return jsonify({"error": "Invalid preorder data"}), 400
 
     customer_id = data.get("CustomerID")
     vendor_id = data.get("VendorID")
