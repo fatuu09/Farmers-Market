@@ -44,6 +44,7 @@ CREATE TABLE Preorder (
     VendorID VARCHAR(20) NOT NULL,
     MarketID VARCHAR(20) NOT NULL,
     ProductID VARCHAR(20) NOT NULL,
+    Quantity INT NOT NULL DEFAULT 1,
     FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
     FOREIGN KEY (VendorID, ProductID)
         REFERENCES Vendor_Products(VendorID, ProductID),
