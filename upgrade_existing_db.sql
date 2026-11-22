@@ -1,0 +1,4 @@
+USE new_schema;
+
+ALTER TABLE Preorder
+ADD COLUMN Quantity INT NOT NULL DEFAULT 1;
