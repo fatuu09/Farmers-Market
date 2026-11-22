@@ -93,12 +93,12 @@ def add_preorder():
     vendor_id = data.get("VendorID")
     market_id = data.get("MarketID")
     product_id = data.get("ProductID")
-    quantity = data.get("Qunatity")
+    quantity = data.get("Quantity", 1)
 
     if not all([customer_id, vendor_id, market_id, product_id]):
         return jsonify({"error": "Missing preorder information"}), 400
 
-    if type(quantity) is not or quantity < 1:
+    if type(quantity) is not int or quantity < 1:
         return jsonify({"error": "Invalid quantity"}), 400
 
     order_number = uuid.uuid4().hex[:20]
