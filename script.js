@@ -188,6 +188,7 @@ function showProducts() {
     }
         card.append(name, details, place, link);
         document.getElementById("productList").appendChild(card);
+    }
 
     document.getElementById("productCount").textContent = count + " products found";
 }
@@ -209,7 +210,7 @@ function showTotal() {
     document.getElementById("total").textContent = "Total: $" + total.toFixed(2);
 }
 
-function placeOrder(event) {
+async function placeOrder(event) {
     event.preventDefault();
 
     var message = document.getElementById("message");
