@@ -50,7 +50,7 @@ Ensure data consistency and system security.
 Trello Board:
 https://trello.com/b/DVC0hiRG/farmers-market-se-3050-final-project
 
-MySQL Password Setup
+### MySQL Password Setup
 Each team member uses their own local MySQL password. Before running Flask, open a PowerShell terminal in the project folder and enter:
 $env:DB_PASSWORD = Read-Host "Enter MySQL password"
 Then run: py app.py
