@@ -19,6 +19,16 @@ async function showMarkets() {
         list.innerHTML = "";
         filter.innerHTML = '<option value="">All markets</option>';
 
+        var vendorResponse = await fetch("/vendors");
+var marketVendorResponse = await fetch("/market-vendors");
+
+if (!vendorResponse.ok || !marketVendorResponse.ok) {
+    throw new Error("Could not load vendors");
+}
+
+var vendors = await vendorResponse.json();
+var marketVendors = await marketVendorResponse.json();
+
         for (var i = 0; i < data.length; i++) {
             var market = {
                 id: data[i].MarketID,
@@ -37,6 +47,22 @@ async function showMarkets() {
             var address = document.createElement("p");
             address.textContent = market.location;
 
+            var vendorNames = [];
+
+for (var j = 0; j < marketVendors.length; j++) {
+    if (marketVendors[j].MarketID === market.id) {
+        for (var k = 0; k < vendors.length; k++) {
+            if (vendors[k].VendorID === marketVendors[j].VendorID) {
+                vendorNames.push(vendors[k].Name);
+            }
+        }
+    }
+}
+
+var vendorList = document.createElement("p");
+vendorList.textContent = "Vendors: " +
+    (vendorNames.length > 0 ? vendorNames.join(", ") : "None listed");
+
             var link = document.createElement("a");
             link.href = "#products";
             link.textContent = "View products";
@@ -47,7 +73,7 @@ async function showMarkets() {
                 showProducts();
             };
 
-            card.append(title, address, link);
+            card.append(title, address, vendorList, link);
             list.appendChild(card);
 
             var option = document.createElement("option");
@@ -149,13 +175,20 @@ function showProducts() {
             if (markets[j].id === product.market) place.textContent = markets[j].name;
         }
         var link = document.createElement("a");
+
+    if (product.stock > 0) {
         link.href = "#checkout";
         link.textContent = "Pre-order";
         link.dataset.index = i;
-        link.onclick = function () { chooseProduct(Number(this.dataset.index)); };
-        card.append(name, details, place, link);
-        list.appendChild(card);
+        link.onclick = function () { 
+            chooseProduct(Number(this.dataset.index));
+        };
+    } else {
+        link.textContent = "Out of stock";
     }
+        card.append(name, details, place, link);
+        document.getElementById("productList").appendChild(card);
+
     document.getElementById("productCount").textContent = count + " products found";
 }
 
@@ -181,6 +214,7 @@ function placeOrder(event) {
 
     var message = document.getElementById("message");
     var quantity = Number(document.getElementById("quantity").value);
+    var customerId = document.getElementById("customer").value;
 
     if (selectedProduct === -1) {
         message.textContent = "Please select a product.";
@@ -194,9 +228,43 @@ function placeOrder(event) {
         return;
     }
 
-    message.textContent = "Preorder submission is not connected yet.";
-}
+    if (!customerId) {
+        message.textContent = "Please select a customer.";
+        return;
+    }
 
+    message.textContent = "Placing preorder...";
+    
+ try {
+        var response = await fetch("/preorders", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                CustomerID: customerId,
+                VendorID: product.vendorId,
+                MarketID: product.market,
+                ProductID: product.id,
+                Quantity: quantity
+            })
+        });
+
+        var result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || "Preorder failed");
+        }
+
+        message.textContent = "Preorder placed successfully!";
+        selectedProduct = -1;
+        await loadProducts();
+
+    } catch (error) {
+        message.textContent = error.message;
+    }
+}
+    
 async function showOrders() {
     var list = document.getElementById("orderList");
     list.innerHTML = "";
