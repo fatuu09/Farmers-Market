@@ -232,33 +232,6 @@ async function loadCustomers() {
         }
 
         var data = await response.json();
-
-        customers = [];
-
-        for (var i = 0; i < data.length; i++) {
-            customers.push({
-                id: data[i].CustomerID,
-                name: data[i].Name,
-                email: data[i].Email
-            });
-        }
-
-        showCustomers();
-
-    } catch (error) {
-        console.error("Error loading customers:", error);
-    }
-}
-
-async function loadCustomers() {
-    try {
-        var response = await fetch("/customers");
-
-        if (!response.ok) {
-            throw new Error("Could not load customers");
-        }
-
-        var data = await response.json();
         var list = document.getElementById("customer");
 
         list.innerHTML = "";
@@ -286,5 +259,5 @@ document.getElementById("orderForm").onsubmit = placeOrder;
 showMarkets();
 showProducts();
 showOrders();
-loadCustomer();
+loadCustomers();
 if (!location.hash || location.hash === "#checkout") location.hash = "#home";
