@@ -59,6 +59,13 @@ Then run: py app.py
 
 Please do not upload actual password to GitHub
 
+### Video
+
+https://github.com/user-attachments/assets/4c674769-8949-4baa-a559-0435f077f2e7
+
+
+
+
 
 
 
