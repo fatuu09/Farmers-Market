@@ -77,7 +77,12 @@ def get_market_vendors():
 def get_preorders():
     connection = get_connection()
     cursor = connection.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM Preorder")
+    cursor.execute("""
+    SELECT o.*, c.Name AS CustomerName, p.Name AS ProductName
+    FROM Preorder o
+    JOIN Customer c ON o.CustomerID = c.CustomerID
+    JOIN Product p ON o.ProductID = p.ProductID
+    """)
     preorders = cursor.fetchall()
     cursor.close()
     connection.close()
