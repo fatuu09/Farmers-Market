@@ -286,8 +286,8 @@ async function showOrders() {
 
             item.textContent =
                 "Order: " + order.OrderNumber +
-                " | Customer: " + order.CustomerID +
-                " | Product: " + order.ProductID;
+                " | Customer: " + order.CustomerName +
+                " | Product: " + order.ProductName;
 
             list.appendChild(item);
         }
